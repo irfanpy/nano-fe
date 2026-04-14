@@ -1,0 +1,151 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // Brand Colors - Dubai Gold & Deep Navy
+        primary: {
+          50:  '#fff8e7',
+          100: '#ffefc4',
+          200: '#ffdc8a',
+          300: '#ffc44f',
+          400: '#ffaa1a',
+          500: '#f59300',  // Main brand gold
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+        },
+        navy: {
+          50:  '#eef2ff',
+          100: '#e0e7ff',
+          200: '#c7d2fe',
+          300: '#a5b4fc',
+          400: '#818cf8',
+          500: '#1e3a5f',  // Deep navy
+          600: '#1a2f4e',
+          700: '#14253d',
+          800: '#0e1b2c',
+          900: '#08111b',
+        },
+        accent: {
+          50:  '#f0fdf4',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#86efac',
+          400: '#4ade80',
+          500: '#22c55e',  // Success / verified green
+          600: '#16a34a',
+          700: '#15803d',
+          800: '#166534',
+          900: '#14532d',
+        },
+        sand: {
+          50:  '#fdfaf5',
+          100: '#faf3e7',
+          200: '#f5e6ce',
+          300: '#eed3a8',
+          400: '#e5bc7e',
+          500: '#d4a056',  // Warm sand
+          600: '#c08040',
+          700: '#9a6030',
+          800: '#7a4820',
+          900: '#5c3215',
+        },
+        neutral: {
+          50:  '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#374151',
+          800: '#1f2937',
+          900: '#111827',
+        },
+        danger: {
+          50:  '#fef2f2',
+          500: '#ef4444',
+          600: '#dc2626',
+          700: '#b91c1c',
+        },
+        warning: {
+          50:  '#fffbeb',
+          500: '#f59e0b',
+          600: '#d97706',
+        },
+        info: {
+          50:  '#eff6ff',
+          500: '#3b82f6',
+          600: '#2563eb',
+        },
+      },
+      fontFamily: {
+        sans:        ['Inter', 'system-ui', 'sans-serif'],
+        heading:     ['Playfair Display', 'Georgia', 'serif'],
+        arabic:      ['Noto Sans Arabic', 'Arial', 'sans-serif'],
+        condensed:   ['Barlow Condensed', 'sans-serif'],
+      },
+      fontSize: {
+        xs:   ['0.75rem',  { lineHeight: '1rem' }],
+        sm:   ['0.875rem', { lineHeight: '1.25rem' }],
+        base: ['1rem',     { lineHeight: '1.5rem' }],
+        lg:   ['1.125rem', { lineHeight: '1.75rem' }],
+        xl:   ['1.25rem',  { lineHeight: '1.75rem' }],
+        '2xl':['1.5rem',   { lineHeight: '2rem' }],
+        '3xl':['1.875rem', { lineHeight: '2.25rem' }],
+        '4xl':['2.25rem',  { lineHeight: '2.5rem' }],
+        '5xl':['3rem',     { lineHeight: '1' }],
+        '6xl':['3.75rem',  { lineHeight: '1' }],
+      },
+      spacing: {
+        18: '4.5rem',
+        88: '22rem',
+        128: '32rem',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+      },
+      boxShadow: {
+        card:    '0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.08)',
+        'card-hover': '0 4px 12px rgba(0,0,0,.10), 0 8px 32px rgba(0,0,0,.12)',
+        gold:    '0 4px 20px rgba(245,147,0,.25)',
+        navy:    '0 4px 20px rgba(30,58,95,.20)',
+      },
+      backgroundImage: {
+        'hero-gradient':    'linear-gradient(135deg, #1e3a5f 0%, #14253d 60%, #0e1b2c 100%)',
+        'gold-gradient':    'linear-gradient(135deg, #f59300 0%, #d97706 100%)',
+        'card-gradient':    'linear-gradient(180deg, rgba(255,255,255,0) 60%, rgba(30,58,95,.8) 100%)',
+        'warm-gradient':    'linear-gradient(135deg, #fdfaf5 0%, #faf3e7 100%)',
+      },
+      animation: {
+        'fade-in':      'fadeIn .3s ease-in-out',
+        'slide-up':     'slideUp .4s ease-out',
+        'slide-down':   'slideDown .3s ease-out',
+        'scale-in':     'scaleIn .2s ease-out',
+        'pulse-gold':   'pulseGold 2s infinite',
+      },
+      keyframes: {
+        fadeIn:    { '0%': { opacity: '0' },                         '100%': { opacity: '1' } },
+        slideUp:   { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+        slideDown: { '0%': { opacity: '0', transform: 'translateY(-10px)' },'100%': { opacity: '1', transform: 'translateY(0)' } },
+        scaleIn:   { '0%': { opacity: '0', transform: 'scale(.95)' },'100%': { opacity: '1', transform: 'scale(1)' } },
+        pulseGold: { '0%,100%': { boxShadow: '0 0 0 0 rgba(245,147,0,.4)' }, '50%': { boxShadow: '0 0 0 8px rgba(245,147,0,0)' } },
+      },
+      screens: {
+        xs: '475px',
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
+      },
+    },
+  },
+  plugins: [],
+}
