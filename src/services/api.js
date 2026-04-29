@@ -1,4 +1,3 @@
-// Axios instance — base API client with auth interceptors
 import axios from 'axios'
 
 const api = axios.create({
@@ -7,23 +6,30 @@ const api = axios.create({
   timeout: 15000,
 })
 
-// Attach JWT token to every request
+// Attach JWT access token to every request
 api.interceptors.request.use((config) => {
-  const raw = localStorage.getItem('thh-auth')
+  const raw = localStorage.getItem('thh-session')
   if (raw) {
-    const { state } = JSON.parse(raw)
-    if (state?.token) config.headers.Authorization = `Bearer ${state.token}`
+    try {
+      const session = JSON.parse(raw)
+      if (session?.token) config.headers.Authorization = `Bearer ${session.token}`
+    } catch { /* ignore */ }
   }
   return config
 })
 
-// Global error handler
+// On 401 — only redirect if the user had an active session (token expired)
+// Do NOT redirect on login/register failures (user was never authenticated)
 api.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err.response?.status === 401) {
-      localStorage.removeItem('thh-auth')
-      window.location.href = '/login'
+      const isAuthEndpoint = err.config?.url?.includes('/auth/login') ||
+                             err.config?.url?.includes('/auth/register')
+      if (!isAuthEndpoint) {
+        localStorage.removeItem('thh-session')
+        window.location.href = '/'
+      }
     }
     return Promise.reject(err)
   }

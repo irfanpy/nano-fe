@@ -25,42 +25,35 @@ export default function Navbar() {
   const openModal = useUIStore((state) => state.openModal)
   const navigate = useNavigate()
 
-  const handleLogout = () => {
-    logout()
-    navigate('/')
-  }
-
-  const handleOpenAuth = (type) => {
-    setMobileOpen(false)
-    openModal(type)
-  }
+  const handleLogout = () => { logout(); navigate('/') }
+  const handleOpenAuth = (type) => { setMobileOpen(false); openModal(type) }
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-neutral-100 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white border-b border-neutral-200">
       <div className="container-app">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14">
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-gold-gradient flex items-center justify-center shadow-gold">
-              <span className="text-white font-heading font-bold text-sm">TH</span>
+            <div className="w-7 h-7 rounded-lg bg-primary-500 flex items-center justify-center">
+              <span className="text-white font-bold text-xs font-condensed">TH</span>
             </div>
-            <span className="font-heading font-bold text-navy-500 text-lg leading-tight">
+            <span className="font-semibold text-neutral-900 text-sm">
               Trusted<span className="text-primary-500">Home</span>
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-0.5">
             {NAV_LINKS.map(({ to, label }) => (
               <NavLink
                 key={to}
                 to={to}
                 className={({ isActive }) =>
-                  `px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${
+                  `px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                     isActive
                       ? 'text-primary-600 bg-primary-50'
-                      : 'text-neutral-600 hover:text-navy-500 hover:bg-neutral-50'
+                      : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50'
                   }`
                 }
               >
@@ -73,46 +66,44 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-2">
             {user ? (
               <>
-                <Link
-                  to={DASHBOARD_ROUTE[user.role] ?? '/'}
-                  className="btn-ghost text-sm px-4 py-2"
-                >
+                <Link to={DASHBOARD_ROUTE[user.role] ?? '/'} className="text-sm font-medium text-neutral-600 hover:text-neutral-900 px-3 py-1.5">
                   Dashboard
                 </Link>
-                <button onClick={handleLogout} className="btn-outline text-sm px-4 py-2">
-                  Logout
-                </button>
+                <button onClick={handleLogout} className="btn-outline btn-sm">Logout</button>
               </>
             ) : (
               <>
-                <button onClick={() => handleOpenAuth('auth-login')} className="btn-ghost text-sm px-4 py-2">Sign In</button>
-                <button onClick={() => handleOpenAuth('auth-register')} className="btn-primary text-sm px-4 py-2">Get Started</button>
+                <button onClick={() => handleOpenAuth('auth-login')} className="text-sm font-medium text-neutral-600 hover:text-neutral-900 px-3 py-1.5">
+                  Sign In
+                </button>
+                <button onClick={() => handleOpenAuth('auth-register')} className="btn-primary btn-sm">
+                  Get Started
+                </button>
               </>
             )}
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile */}
           <button
-            className="md:hidden p-2 rounded-lg text-neutral-600 hover:bg-neutral-100"
+            className="md:hidden p-1.5 rounded-lg text-neutral-600 hover:bg-neutral-100"
             onClick={() => setMobileOpen((o) => !o)}
-            aria-label="Toggle menu"
           >
-            {mobileOpen ? <HiX size={22} /> : <HiMenu size={22} />}
+            {mobileOpen ? <HiX size={20} /> : <HiMenu size={20} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-neutral-100 bg-white px-4 pb-4 animate-slide-down">
-          <nav className="flex flex-col gap-1 mt-3">
+        <div className="md:hidden border-t border-neutral-100 bg-white px-4 pb-4">
+          <nav className="flex flex-col gap-0.5 mt-2">
             {NAV_LINKS.map(({ to, label }) => (
               <NavLink
                 key={to}
                 to={to}
                 onClick={() => setMobileOpen(false)}
                 className={({ isActive }) =>
-                  `px-3 py-2.5 rounded-lg text-sm font-medium ${
+                  `px-3 py-2 rounded-lg text-sm font-medium ${
                     isActive ? 'text-primary-600 bg-primary-50' : 'text-neutral-700 hover:bg-neutral-50'
                   }`
                 }
@@ -121,10 +112,10 @@ export default function Navbar() {
               </NavLink>
             ))}
           </nav>
-          <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-neutral-100">
+          <div className="flex flex-col gap-2 mt-3 pt-3 border-t border-neutral-100">
             {user ? (
               <>
-                <Link to={DASHBOARD_ROUTE[user.role] ?? '/'} className="btn-navy w-full text-center" onClick={() => setMobileOpen(false)}>Dashboard</Link>
+                <Link to={DASHBOARD_ROUTE[user.role] ?? '/'} className="btn-navy w-full" onClick={() => setMobileOpen(false)}>Dashboard</Link>
                 <button onClick={handleLogout} className="btn-outline w-full">Logout</button>
               </>
             ) : (

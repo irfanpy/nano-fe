@@ -1,11 +1,20 @@
-// Helper profile API calls
 import api from './api'
 
 export const helperService = {
-  search:       (params) => api.get('/helpers', { params }),
-  getById:      (id)     => api.get(`/helpers/${id}`),
-  updateProfile:(data)   => api.put('/helpers/profile', data),
-  uploadPhoto:  (file)   => { const fd = new FormData(); fd.append('photo', file); return api.post('/helpers/photo', fd, { headers: { 'Content-Type': 'multipart/form-data' } }) },
-  getMyProfile: ()       => api.get('/helpers/me'),
-  getFeatured:  ()       => api.get('/helpers/featured'),
+  search:        (params) => api.get('/helpers/', { params }),
+  getById:       (id)     => api.get(`/helpers/${id}/`),
+  getMyProfile:  ()       => api.get('/helpers/me/'),
+  updateProfile: (data)   => api.patch('/helpers/me/', data),
+  getFeatured:   ()       => api.get('/helpers/featured/'),
+  uploadPhoto:   (file)   => {
+    const fd = new FormData()
+    fd.append('avatar', file)
+    return api.post('/helpers/me/avatar/', fd, { headers: { 'Content-Type': 'multipart/form-data' } })
+  },
+  uploadDocument: (docType, file) => {
+    const fd = new FormData()
+    fd.append('doc_type', docType)
+    fd.append('file', file)
+    return api.post('/helpers/me/documents/', fd, { headers: { 'Content-Type': 'multipart/form-data' } })
+  },
 }

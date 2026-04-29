@@ -86,10 +86,9 @@ export default {
         },
       },
       fontFamily: {
-        sans:        ['Inter', 'system-ui', 'sans-serif'],
-        heading:     ['Playfair Display', 'Georgia', 'serif'],
-        arabic:      ['Noto Sans Arabic', 'Arial', 'sans-serif'],
-        condensed:   ['Barlow Condensed', 'sans-serif'],
+        sans:      ['Inter', 'system-ui', 'sans-serif'],
+        heading:   ['Inter', 'system-ui', 'sans-serif'],
+        condensed: ['Barlow Condensed', 'sans-serif'],
       },
       fontSize: {
         xs:   ['0.75rem',  { lineHeight: '1rem' }],
@@ -112,10 +111,10 @@ export default {
         '4xl': '2rem',
       },
       boxShadow: {
-        card:    '0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.08)',
-        'card-hover': '0 4px 12px rgba(0,0,0,.10), 0 8px 32px rgba(0,0,0,.12)',
-        gold:    '0 4px 20px rgba(245,147,0,.25)',
-        navy:    '0 4px 20px rgba(30,58,95,.20)',
+        card:        '0 1px 2px rgba(0,0,0,.04), 0 2px 8px rgba(0,0,0,.06)',
+        'card-hover':'0 4px 12px rgba(0,0,0,.08)',
+        gold:        '0 2px 12px rgba(245,147,0,.20)',
+        navy:        '0 2px 12px rgba(30,58,95,.15)',
       },
       backgroundImage: {
         'hero-gradient':    'linear-gradient(135deg, #1e3a5f 0%, #14253d 60%, #0e1b2c 100%)',
